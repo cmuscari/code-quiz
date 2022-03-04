@@ -6,55 +6,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Code Quiz</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
     <!-- header -->
     <header>
-        <div class="header bg-secondary text-light">
-            <button type="button" id="high-score-button" class="btn btn-info bg-success text-light">View High Scores</button> 
-            <div>
-                <label for="time-remaining" class="form-label">Time Remaining</label>
-                <input type="number" readonly class="form-control" id="time-remaining" placeholder="0">
+        <div class="header row bg-secondary text-light">
+            <button type="button" id="high-score-button" class="btn col-1 bg-success text-light rounded">View High Scores</button> 
+            <div class="col-9"></div>
+            <div class="col-2">
+                <p class="timer">Time Remaining: 60</p>
             </div>
         </div>
     </header>
 
     <!-- start screen -->
-    <div id="start-screen">
+    <div id="start-screen" class="text-center">
         <h1>Code Quiz</h1>
         <p>Answer the questions to reach the end.  Each wrong answer will deduct 10 seconds from your time.  The more time you have remaining at the end, the higher your score!</p>
-        <button id="start-button" type="button">Start Quiz</button>
+        <button id="start-button" type="button" class="rounded btn-lg bg-success text-light">Start Quiz</button>
     </div>
 
 
+
+
+<!-- START 3 HIDDEN SCREENS -->
+
     <!-- quiz screen (does not display until start button is clicked)-->
-    <div id="quiz-screen" class="d-none"></div>
+    <div id="quiz-screen" class="d-none">
+        <h3 id="question" class="text-center">This is a question</h3>
+        <div class="d-flex row col-12">
+            <div class="col-4"></div>
+            <div class="answer-options col-4 border border-success p-3 text-center">
+                <div class="text-center">
+                    <button id="answer-a" type="button" value="0" class="answer-button rounded btn-lg bg-success text-light text-center p-1 mt-1 mb-1">Answer-A</button>
+                </div>
+                <div class="text-center">
+                    <button id="answer-b" type="button" value="1" class="answer-button rounded btn-lg bg-success text-light text-center p-1 mt-1 mb-1">Answer-B</button>
+                </div>
+                <div class="text-center">
+                    <button id="answer-c" type="button" value="2" class="answer-button rounded btn-lg bg-success text-light text-center p-1 mt-1 mb-1">Answer-C</button>
+                </div>
+                <div class="text-center">
+                    <button id="answer-d" type="button" value="3" class="answser-button rounded btn-lg bg-success text-light text-center p-1 mt-1 mb-1">Answer-D</button>
+                </div>               
+            </div>
+            <div class="col-4"></div>
+        </div>
+    </div>
 
 
     <!-- end screen (does not display until quiz is finished)-->
-    <div id="end-screen" class="d-none">
-        <label for="final-score" class="form-label">Final Score</label>
-        <input type="number" readonly class="form-control" id="final-score" placeholder="0">
+    <div id="end-screen" class="text-center d-none">
+        <h2>Quiz Over!</h2>
+        <h3>Your final score is:</h3>
+        <h3 id="score" class="font-weight-bold">0</h3>
+        <p>Enter initials:
+        <input placeholder="initials" id="initials" />
+        <button id="submit-score" class="submit-score-btn">Submit</button>
     </div>
-    <form>
-        <div class="form-group d-none">
-            <label for="initials-input">Initials</label>
-            <input type="text" class="form-control" id="initials-input" placeholder="Enter Initials">
-            <button id="submit-initials" type="button">Submit</button>
-        </div>
-    </form>
+  
 
     <!-- high score screen (does not display until high scores button is clicked)-->
-    <div id="high-score-screen" class="d-none">
+    <div id="high-score-screen" class="text-center d-none">
         <h2>High Scores</h2>
+        <br>
+        <ol class="scores-list"></ol>
+        <button id="tryAgain" class="try-again-btn rounded btn-lg bg-success text-light">Try Again</button>
+        <button id="clearScores" class="clear-scores-btn rounded btn-lg bg-success text-light">Clear High Scores</button>
     </div>
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src=".assets/js/questions.js"></script>
 <script src=".assets/js/script.js"></script>
 </body>
