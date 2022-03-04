@@ -6,3 +6,8 @@
 .timer {
     font-size: 25px;
 }
+
+.sec-remaining {
+    font-size: 25px;
+    font-weight: bold;
+}

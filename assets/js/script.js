@@ -2,8 +2,8 @@
 var startButton = document.querySelector("#start-button");
 var timer = document.querySelector(".timer");
 var score = document.querySelector("#score");
-var secRemaining = document.querySelector(".sec-remaining");
-var questionNumber = questions[i];
+var secRemaining = document.querySelector(".sec-remaining").textContent;
+// var questionNumber = questions[i];
 
 // Array of Questions 
 var questions = [ 
@@ -37,57 +37,13 @@ var questions = [
 
 
 
-
-
-
-
-// ********************************************
-
-// Start Quiz Function
-function startQuiz() {
-    startTimer();
-    questionNumber = 0;
-    askQuestion(questionNumber);
-}
-
 // Start Timer Function
-function startTimer() {
+function startTimer () {
     var timerInterval = setInterval(function () {
-        $(".countdown .sec-remaining").text(sec--);
-
-        if (secRemaining === 0 || questionNumber === questions.length) {
-            clearInterval(timerInterval);
-         
-            score.textContent = secRemaining;
-        }
+        secRemaining--;
+        $("#countdown span").text(secRemaining);
+        console.log(secRemaining);
     }, 1000);
-
-
-
-{/* <script>
-var sec = 15
-var timer = setInterval(function() {
-   $('.auctiondiv .countdown').text(sec--);
-   if (sec == -1) {
-      $('.auctiondiv .countdown').fadeOut('slow');
-      clearInterval(timer);
-   }
-}, 1000);
-</script> */}
-
-
-    
-
-
-// SET QUESTION FUNCTION
-function askQuestion(id) {
-    if (id < questions.length) {
-        questionEl.textContent = questions[id].question;
-        ans1Btn.textContent = questions[id].answers[0];
-        ans2Btn.textContent = questions[id].answers[1];
-        ans3Btn.textContent = questions[id].answers[2];
-        ans4Btn.textContent = questions[id].answers[3];
-    }
 }
 
 
@@ -96,11 +52,23 @@ function askQuestion(id) {
 
 
 
+// function startTimer() {
+//     var timerInterval = setInterval(function () {
+//         var sec = 60;
+//         $(".countdown .sec-remaining").text = (sec--);
+//         console.log(sec);
+
+//         if (sec === 0 || questionNumber === questions.length) {
+//             clearInterval(timerInterval);
+         
+//             score.textContent = sec;
+//         }
+//     }, 1000);
+// }
 
 
 
 
 // *********************************************************
-
 // Fire Start Quiz Function when start button is clicked
 startButton.addEventListener("click", startTimer);
