@@ -7,6 +7,8 @@ var questionEl = document.querySelector("#question");
 var index = 0;
 var displayAnswerEl = document.querySelector("#display-answer");
 var answerButtonEl = document.querySelectorAll(".answer-button");
+var submitScoreButtonEl = document.querySelector("#submit-score");
+var initialsInput = document.querySelector("#initials");
 
 var buttonA = document.querySelector("#answer-a");
 var buttonB = document.querySelector("#answer-b");
@@ -64,9 +66,10 @@ function startQuiz () {
 // Start Timer Function
 function startTimer () {
     var timerInterval = setInterval(function () {
-        secRemaining--;
-        $("#countdown span").text(secRemaining);
-        console.log(secRemaining);
+        if (secRemaining > 0  && index !== questions.length) {
+            secRemaining--;
+            $("#countdown span").text(secRemaining);
+        }
     }, 1000);
 }
 
@@ -90,39 +93,30 @@ function startQuestions () {
 }
 
 
-
-
-    // // Creating answer element to display
-    // var answer = document.createElement("p");
-    // displayAnswerEl.appendChild(answer);
-
-    // // DISPLAY NEW ELEMENT FOR X AMOUNR OF TIME
-    // setTimeout(function () {
-    //     p.style.display = 'none';
-    // }, 1000);
-
-
-
-
 // Listen for answer button click
 answerButtonEl.forEach(button => {
     button.addEventListener('click', checkAnswers);
 });
 
 
-
 // Check Answers Function
 function checkAnswers(event) {
-    console.log(questions[index].correctAnswer);
-    console.log(parseInt(event.target.value) + 1);
 
-    // Check if answer is correct or wrong
+    // Check if answer is correct or wrong & display result on screen for 1 second
     if (parseInt(questions[index].correctAnswer) === parseInt(event.target.value) + 1) {
         displayAnswerEl.textContent = "Correct!";
+        $("#display-answer").show();
+        setTimeout(function() {
+            $("#display-answer").hide();
+        }, 1000);
     } 
     else if (parseInt(questions[index].correctAnswer) !== parseInt(event.target.value) + 1) {
         secRemaining = secRemaining - 10;
         displayAnswerEl.textContent = "Wrong!";
+        $("#display-answer").show();
+        setTimeout(function() {
+            $("#display-answer").hide();
+        }, 1000);
     }
 
     // Ask next question (if we are not already at the last question)
@@ -141,9 +135,31 @@ function checkAnswers(event) {
 function switchScreen2 () {
     $("#quiz-screen").addClass("d-none");
     $("#end-screen").removeClass("d-none");
+
+    // Display final time as final score on End Screen
+    $("#score").text(secRemaining);
 }
 
 
+// on click of submit button, run switch screen function 3
+submitScoreButtonEl.addEventListener('click', switchScreen3);
+
+
+// Create new high score variable
+var newHighScore = secRemaining;
+
+
+// Switch Screen Function (3)
+function switchScreen3 () {
+    $("#end-screen").addClass("d-none");
+    $("#high-score-screen").removeClass("d-none");
+}
+
+
+// Take input initials & final score, and put them into a High Scores list on High Scores Screen
+
+initialsInput
+newHighScore
 
 
 
@@ -163,23 +179,7 @@ function switchScreen2 () {
 
 
 
-// function startTimer() {
-//     var timerInterval = setInterval(function () {
-//         var sec = 60;
-//         $(".countdown .sec-remaining").text = (sec--);
-//         console.log(sec);
-
-//         if (sec === 0 || questionNumber === questions.length) {
-//             clearInterval(timerInterval);
-         
-//             score.textContent = sec;
-//         }
-//     }, 1000);
-// }
 
 
-
-
-// *********************************************************
 // Fire Start Quiz Function when start button is clicked
 startButton.addEventListener("click", startQuiz);
