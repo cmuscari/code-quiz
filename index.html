@@ -40,24 +40,28 @@
 
     <!-- quiz screen (does not display until start button is clicked)-->
     <div id="quiz-screen" class="d-none">
-        <h3 id="question" class="text-center">This is a question</h3>
+        <h3 id="question" class="text-center"></h3>
         <div class="d-flex row col-12">
             <div class="col-4"></div>
             <div class="answer-options col-4 border border-success p-3 text-center">
                 <div class="text-center">
-                    <button id="answer-a" type="button" value="0" class="answer-button rounded btn-lg bg-success text-light text-center p-1 mt-1 mb-1">Answer-A</button>
+                    <button id="answer-a" type="button" value="0" class="answer-button rounded btn-lg bg-success text-light text-center p-1 mt-1 mb-1"></button>
                 </div>
                 <div class="text-center">
-                    <button id="answer-b" type="button" value="1" class="answer-button rounded btn-lg bg-success text-light text-center p-1 mt-1 mb-1">Answer-B</button>
+                    <button id="answer-b" type="button" value="1" class="answer-button rounded btn-lg bg-success text-light text-center p-1 mt-1 mb-1"></button>
                 </div>
                 <div class="text-center">
-                    <button id="answer-c" type="button" value="2" class="answer-button rounded btn-lg bg-success text-light text-center p-1 mt-1 mb-1">Answer-C</button>
+                    <button id="answer-c" type="button" value="2" class="answer-button rounded btn-lg bg-success text-light text-center p-1 mt-1 mb-1"></button>
                 </div>
                 <div class="text-center">
-                    <button id="answer-d" type="button" value="3" class="answser-button rounded btn-lg bg-success text-light text-center p-1 mt-1 mb-1">Answer-D</button>
+                    <button id="answer-d" type="button" value="3" class="answer-button rounded btn-lg bg-success text-light text-center p-1 mt-1 mb-1"></button>
                 </div>               
             </div>
             <div class="col-4"></div>
+        </div>
+        <div class="d-flex row col-12 text-center">
+            <span id="display-answer" class="text-center col-12"></span>
+            <!-- Where "CORRECT or WRONG" will display -->
         </div>
     </div>
 
