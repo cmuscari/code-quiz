@@ -9,6 +9,9 @@ var displayAnswerEl = document.querySelector("#display-answer");
 var answerButtonEl = document.querySelectorAll(".answer-button");
 var submitScoreButtonEl = document.querySelector("#submit-score");
 var initialsInput = document.querySelector("#initials");
+var scoreList = [];
+var scoreListEl = document.querySelector("#scores-list");
+var clearScoresButton = document.querySelector("#clear-scores");
 
 var buttonA = document.querySelector("#answer-a");
 var buttonB = document.querySelector("#answer-b");
@@ -126,6 +129,7 @@ function checkAnswers(event) {
     startQuestions(index);
 
     if (index === questions.length) {
+        $("#countdown span").text(secRemaining);
         switchScreen2();
     }
 }
@@ -149,26 +153,39 @@ submitScoreButtonEl.addEventListener('click', switchScreen3);
 var newHighScore = secRemaining;
 
 
-// Switch Screen Function (3)
+// Switch Screen Function (3) & fire Add Score function
 function switchScreen3 () {
     $("#end-screen").addClass("d-none");
     $("#high-score-screen").removeClass("d-none");
+    addScore();
 }
 
 
-// Take input initials & final score, and put them into a High Scores list on High Scores Screen
+// Add Score Function - Take input initials & final score, and put them into a High Scores list on High Scores Screen
+function addScore() {
+    var initials = initialsInput.value.toUpperCase();
+    scoreList.push({ initials: initials, score: secRemaining });
+    var scoreEl = document.createElement("li");
+    scoreEl.textContent = "initials: " + initials + " score: " + secRemaining;
+    scoreListEl.appendChild(scoreEl);
 
-initialsInput
-newHighScore
+    // save high scores list to local storage
+    localStorage.setItem("scoreList", JSON.stringify(scoreList));
+    JSON.parse(localStorage.getItem("scoreList"));
+}
 
 
 
 
 
 
-
-
-
+// Clear high scores when Clear Scores Button is clicked
+function clearScores () {
+    scoreListEl.textContent = "";
+    localStorage.clear();
+}    
+    
+clearScoresButton.addEventListener("click", clearScores);
 
 
 
